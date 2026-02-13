@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Anka </title>
+  <style>
+    :root{
+      --c1:#ff758c;   /* rose pink */
+      --c2:#ff7eb3;   /* romantic pink */
+      --c3:#b388ff;   /* soft lavender */
+      --accent:#ff3d6e;
+      --stroke: rgba(255,255,255,.35);
+      --glass: rgba(255,255,255,.18);
+    }
+    *{box-sizing:border-box; margin:0; padding:0; font-family:system-ui, -apple-system, Segoe UI, Roboto;}
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(255,255,255,.25), transparent 40%),
+        radial-gradient(900px 500px at 90% 90%, rgba(255,255,255,.25), transparent 40%),
+        linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+      color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      padding:16px;
+    }
+    .card{
+      width:100%; max-width:460px;
+      background: linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
+      backdrop-filter: blur(12px);
+      border:1px solid var(--stroke);
+      border-radius:22px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35);
+      padding:18px 16px 20px;
+      overflow:hidden;
+    }
+    h1{ text-align:center; font-size:2rem; margin-bottom:6px; }
+    .subtitle{ text-align:center; opacity:.95; margin-bottom:12px; }
+
+    .album{
+      margin:12px 0 10px;
+      padding:14px;
+      border-radius:16px;
+      background: rgba(0,0,0,.20);
+      border:1px dashed var(--stroke);
+      text-align:center;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .album:active{ transform: scale(.98); }
+    .album h3{ margin-bottom:6px; }
+    .hint{ font-size:.9rem; opacity:.9; }
+
+    .slider-wrap{
+      display:none;
+      overflow:hidden;
+      margin-top:10px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background:#ffffff22;
+    }
+    .slider-wrap.show{ display:block; }
+
+    .slider{
+      display:flex;
+      gap:10px;
+      padding:10px;
+      width:max-content;
+      animation: slide 22s linear infinite;
+    }
+    @keyframes slide{
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(-50%); }
+    }
+
+    .slider img{
+      width:110px;
+      height:110px;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      box-shadow: 0 8px 16px rgba(0,0,0,.35);
+      background:#fff;
+      cursor:pointer;
+    }
+
+    .msg{ text-align:center; margin-top:10px; min-height:1.2em; color:#fff }
+    .sign{ text-align:center; opacity:.95; margin-top:6px; }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:10;
+      padding:16px;
+    }
+    .modal.show{ display:flex; }
+    .modal-card{
+      max-width:92vw;
+      max-height:82vh;
+      background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
+      backdrop-filter: blur(12px);
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:10px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.45);
+      animation: pop .18s ease-out;
+    }
+    @keyframes pop{ from{ transform:scale(.94); opacity:0 } to{ transform:scale(1); opacity:1 } }
+    .modal-card img{
+      width:100%;
+      height:auto;
+      border-radius:12px;
+      display:block;
+      cursor:pointer;
+    }
+    .close{ text-align:center; margin-top:6px; opacity:.9; font-size:.85rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Happy Valentine’s Day, Anka </h1>
+    <p class="subtitle">Tap the album to see our memories</p>
+
+    <div class="album" onclick="toggleAlbum()">
+      <h3> Open Album</h3>
+      <div id="sliderWrap" class="slider-wrap">
+        <div class="slider">
+          <!-- 10 photos (duplicated for smooth marquee) -->
+          <img src="./photo1.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo2.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo3.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo4.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo5.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo6.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo7.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo8.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo9.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo10.jpg" onclick="openModal(this.src); event.stopPropagation();">
+
+          <img src="./photo1.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo2.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo3.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo4.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo5.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo6.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo7.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo8.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo9.jpg" onclick="openModal(this.src); event.stopPropagation();">
+          <img src="./photo10.jpg" onclick="openModal(this.src); event.stopPropagation();">
+        </div>
+      </div>
+      <p class="hint">Tap again to close</p>
+    </div>
+
+    <p id="loveMsg" class="msg">Every memory with you is my favorite. </p>
+    <p class="sign">— Yours, <strong>Pranabesh</strong></p>
+  </div>
+
+  <audio id="bgm" src="./music.mp3" preload="auto" loop></audio>
+
+  <div id="modal" class="modal">
+    <div class="modal-card">
+      <img id="modalImg" src="" alt="preview" onclick="toggleModal()">
+      <div class="close">Tap the photo again to close</div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAlbum(){
+      const wrap = document.getElementById('sliderWrap');
+      const music = document.getElementById('bgm');
+      const opened = wrap.classList.toggle('show');
+
+      if(opened){
+        music.play().catch(()=>{});
+      } else {
+        music.pause();
+      }
+    }
+
+    function openModal(src){
+      const modal = document.getElementById('modal');
+      const img = document.getElementById('modalImg');
+      img.src = src;
+      modal.classList.add('show');
+    }
+
+    function toggleModal(){
+      document.getElementById('modal').classList.remove('show');
+    }
+  </script>
+</body>
+</html>
